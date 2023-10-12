@@ -16,13 +16,18 @@ void printBits(int num) {
 }
 
 // Function to convert binary digits to an integer
-int bitsToInt(char* binary_str) {
+int bitsToInt(const char* binary_str) {
     int decimal = 0;
     int length = strlen(binary_str);
 
-    for (int i = length - 1; i >= 0; i++) {
+    for (int i = 0; i < length; i++) {
         if (binary_str[i] == '1') {
-            decimal += (1 << (length - 1 - i));
+            decimal = (decimal << 1) | 1;
+        } else if (binary_str[i] == '0') {
+            decimal = decimal << 1;
+        } else {
+            printf("Invalid binary input: %s\n", binary_str);
+            exit(1);
         }
     }
 
