@@ -1,18 +1,18 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-void binario (long long i)
+void binario (int i)
 {
     if (i < 0)
     {
         printf("-");
         i = abs(i);
     }
-    int nonZeroPrinted = 0;  // To verify if non-zero digit is printed
+    int nonZeroPrinted = 0;  // A flag to track if non-zero digit is printed
 
-    for (long long j = 63; j >= 0; j--)
+    for (int j = 31; j >= 0; j--)
     {
-        int bit = (i >> j) & 1;  
+        int bit = (i >> j) & 1;  // Extract the j-th bit
         if (bit == 1 || nonZeroPrinted)
         {
             printf("%d", bit);
@@ -23,35 +23,17 @@ void binario (long long i)
     {
         printf("0");  // Print at least one zero for the value 0
     }
-      
+     
    
 }
 int main ()
 {
-    char input [50];
-    long long i;
+    int i;
+    printf("Introduza um numero em base decimal para converter para binario\n");
+    scanf("%d", &i);  
 
-    printf("Introduza um número em base decimal para converter para binário\n");
-    
-    if (scanf("%s", input) == 1)
-    {
-        char *endptr;
-        i = strtoll (input, &endptr, 10);
-
-        if (*endptr == '\0')
-        {
-                binario(i);
-                printf("\n");
-        } 
-        else
-        {
-            printf("Número inválido. \n");
-        }
-    }
-    else
-    {
-        printf("Número inválido. \n");
-    }
+    binario(i);
+    printf("\n");
 
     return 0;
 }
